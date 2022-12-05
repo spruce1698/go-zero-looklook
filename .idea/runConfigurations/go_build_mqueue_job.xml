@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="go build mqueue-job" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="looklook" />
+    <working_directory value="$PROJECT_DIR$/app/mqueue/cmd/job/" />
+    <parameters value="-f etc/mqueue.yaml" />
+    <kind value="FILE" />
+    <package value="looklook/app/mqueue/cmd/job" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$/app/mqueue/cmd/job/mqueue.go" />
+    <method v="2" />
+  </configuration>
+</component>

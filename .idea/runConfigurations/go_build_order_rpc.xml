@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="go build order-rpc" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="looklook" />
+    <working_directory value="$PROJECT_DIR$/app/order/cmd/rpc/" />
+    <parameters value="-f etc/order.yaml" />
+    <kind value="FILE" />
+    <package value="looklook/app/order/cmd/rpc" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$/app/order/cmd/rpc/order.go" />
+    <method v="2" />
+  </configuration>
+</component>

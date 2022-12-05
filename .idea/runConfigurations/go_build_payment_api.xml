@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="go build payment-api" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="looklook" />
+    <working_directory value="$PROJECT_DIR$/app/payment/cmd/api" />
+    <parameters value="-f etc/payment.yaml" />
+    <kind value="FILE" />
+    <package value="looklook/app/payment/cmd/api" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$/app/payment/cmd/api/payment.go" />
+    <method v="2" />
+  </configuration>
+</component>
