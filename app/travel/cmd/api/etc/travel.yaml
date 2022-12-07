@@ -18,7 +18,7 @@ Telemetry:
 
 Log:
   ServiceName: travel-api
-  Level: error
+  Level: info
 
 DB:
   DataSource: root:PXDN93VRKUm8TeE7@tcp(127.0.0.1:3306)/looklook_travel?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai

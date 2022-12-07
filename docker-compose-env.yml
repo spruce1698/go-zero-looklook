@@ -76,8 +76,10 @@ services:
     image: docker.elastic.co/kibana/kibana:7.13.4
     container_name: kibana
     environment:
+      - I18N_LOCALE=zh-CN
       - elasticsearch.hosts=http://elasticsearch:9200
       - TZ=Asia/Shanghai
+      - xpack.monitoring.ui.container.elasticsearch.enabled=true
     restart: always
     ports:
       - "5601:5601"
@@ -162,7 +164,7 @@ services:
       - "8980:8080"
 
   mysql:
-    image: mysql/mysql-server:8.0.28
+    image: mysql:8.0.23
     container_name: mysql
     environment:
       # 时区上海 - Time zone Shanghai (Change if needed)
@@ -185,10 +187,11 @@ services:
     restart: always
     ports:
       - "3306:3306"
+  
 
   #redis容器 - Redis container
   redis:
-    image: redis:6.2.5
+    image: redis:6.2.5-alpine
     container_name: redis
     ports:
       - "6379:6379"

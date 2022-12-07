@@ -9,7 +9,7 @@ JwtAuth:
 
 Log:
   ServiceName: order-api
-  Level: error
+  Level: info
 
 #监控
 Prometheus:
