@@ -1,5 +1,5 @@
 Name: order-rpc
-ListenOn: 127.0.0.1:2001
+ListenOn: 0.0.0.0:2001
 Mode: dev
 
 Log:
@@ -8,25 +8,25 @@ Log:
 
 #监控
 Prometheus:
-  Host: 127.0.0.1
+  Host: 0.0.0.0
   Port: 4002
   Path: /metrics
 
 #链路追踪
 Telemetry:
   Name: order-rpc
-  Endpoint:  http://127.0.0.1:14268/api/traces
+  Endpoint:  http://jaeger:14268/api/traces
   Sampler: 1.0
   Batcher: jaeger
 
 Redis:
-  Host: 127.0.0.1:6379
+  Host: redis:6379
   Type: node
   Pass: G62m50oigInC30sf
 DB:
-  DataSource: root:PXDN93VRKUm8TeE7@tcp(127.0.0.1:3306)/looklook_order?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+  DataSource: root:PXDN93VRKUm8TeE7@tcp(mysql:3306)/looklook_order?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
 Cache:
-  - Host: 127.0.0.1:6379
+  - Host: redis:6379
     Pass: G62m50oigInC30sf
 
 #rpc
