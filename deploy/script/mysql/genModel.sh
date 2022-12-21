@@ -13,7 +13,7 @@ modeldir=./genModel
 
 # 数据库配置
 host=127.0.0.1
-port=33069
+port=3306
 dbname=looklook_$1
 username=root
 passwd=PXDN93VRKUm8TeE7

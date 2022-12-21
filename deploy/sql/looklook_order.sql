@@ -4,7 +4,7 @@
  Source Server         : looklook
  Source Server Type    : MySQL
  Source Server Version : 80028
- Source Host           : 127.0.0.1:33069
+ Source Host           : 127.0.0.1:3306
  Source Schema         : looklook_order
 
  Target Server Type    : MySQL
