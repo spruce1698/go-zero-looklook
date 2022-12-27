@@ -2,7 +2,7 @@
   <configuration default="false" name="go build travel-rpc" type="GoApplicationRunConfiguration" factoryName="Go Application">
     <module name="looklook" />
     <working_directory value="$PROJECT_DIR$/app/travel/cmd/rpc" />
-    <parameters value="-f etc/travel.yaml" />
+    <parameters value="-f etc/travel_local.yaml" />
     <kind value="FILE" />
     <package value="looklook/app/travel/cmd/rpc" />
     <directory value="$PROJECT_DIR$" />

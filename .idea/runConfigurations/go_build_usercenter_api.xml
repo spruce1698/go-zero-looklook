@@ -2,7 +2,7 @@
   <configuration default="false" name="go build usercenter-api" type="GoApplicationRunConfiguration" factoryName="Go Application">
     <module name="looklook" />
     <working_directory value="$PROJECT_DIR$/app/usercenter/cmd/api" />
-    <parameters value="-f etc/usercenter.yaml" />
+    <parameters value="-f etc/usercenter_local.yaml" />
     <kind value="FILE" />
     <package value="looklook/app/usercenter/cmd/api" />
     <directory value="$PROJECT_DIR$" />

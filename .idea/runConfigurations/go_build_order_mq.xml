@@ -2,7 +2,7 @@
   <configuration default="false" name="go build order-mq" type="GoApplicationRunConfiguration" factoryName="Go Application">
     <module name="looklook" />
     <working_directory value="$PROJECT_DIR$/app/order/cmd/mq" />
-    <parameters value="-f etc/order.yaml" />
+    <parameters value="-f etc/order_local.yaml" />
     <kind value="FILE" />
     <package value="looklook/app/order/cmd/mq" />
     <directory value="$PROJECT_DIR$" />

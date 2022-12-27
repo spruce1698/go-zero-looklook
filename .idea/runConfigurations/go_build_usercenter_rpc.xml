@@ -2,7 +2,7 @@
   <configuration default="false" name="go build usercenter-rpc" type="GoApplicationRunConfiguration" factoryName="Go Application">
     <module name="looklook" />
     <working_directory value="$PROJECT_DIR$/app/usercenter/cmd/rpc" />
-    <parameters value="-f etc/usercenter.yaml" />
+    <parameters value="-f etc/usercenter_local.yaml" />
     <kind value="FILE" />
     <package value="looklook/app/usercenter/cmd/rpc" />
     <directory value="$PROJECT_DIR$" />
