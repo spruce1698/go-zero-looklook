@@ -29,7 +29,7 @@ Redis:
 PaymentUpdateStatusConf:
   Name: PaymentUpdateStatus
   Brokers:
-    - kafka:9092
+    - 10.0.100.137:9092
   Group: payment-update-paystatus-group
   Topic: payment-update-paystatus-topic
   Offset: first

@@ -3,7 +3,7 @@ Clusters:
       Kafka:
         Name: gostash
         Brokers:
-          - "kafka:9092"
+          - "10.0.100.137:9092"
         Topics:
           - looklook-log
         Group: pro

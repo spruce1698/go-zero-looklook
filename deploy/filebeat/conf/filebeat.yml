@@ -15,7 +15,7 @@ processors:
 
 output.kafka:
   enabled: true
-  hosts: ["kafka:9092"]
+  hosts: ["10.0.100.137:9092"]
   #要提前创建topic
   topic: "looklook-log"
   partition.hash:

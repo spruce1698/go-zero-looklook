@@ -9,17 +9,15 @@ services:
   nginx-gateway:
     image: nginx:1.21.5
     container_name: nginx-gateway
-    restart: always
+    restart: unless-stopped
     privileged: true
     environment:
       - TZ=Asia/Shanghai
     ports:
-      - 8888:8081
+      - "8888:8081"
     volumes:
       - ./deploy/nginx/conf.d:/etc/nginx/conf.d
       - ./data/nginx/log:/var/log/nginx
-    networks:
-      - looklook_net
     depends_on:
       - looklook
 
@@ -36,14 +34,20 @@ services:
     volumes:
       - .:/go/looklook
     privileged: true
-    restart: always
-    networks:
-      - looklook_net
-
-networks:
-  looklook_net:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.20.0.0/16
-
+    ports:
+      - "1001:1001"
+      - "1002:1002"
+      - "1003:1003"
+      - "1004:1004"
+      - "4001:4001"
+      - "4002:4002"
+      - "4003:4003"
+      - "4004:4004"
+      - "4005:4005"
+      - "4006:4006"
+      - "4007:4007"
+      - "4008:4008"
+      - "4009:4009"
+      - "4010:4010"
+      - "4011:4011"
+    restart: unless-stopped
