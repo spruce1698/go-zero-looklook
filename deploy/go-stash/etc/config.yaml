@@ -3,7 +3,7 @@ Clusters:
       Kafka:
         Name: gostash
         Brokers:
-          - "10.0.100.137:9092"
+          - "10.0.100.77:9092" # 替换本地IP
         Topics:
           - looklook-log
         Group: pro
@@ -41,5 +41,5 @@ Clusters:
     Output:
       ElasticSearch:
         Hosts:
-          - "http://elasticsearch:9200"
+          - "http://10.0.100.77:9200" # 替换本地IP
         Index: "looklook-{{yyyy-MM-dd}}"

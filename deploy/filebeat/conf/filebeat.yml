@@ -15,7 +15,7 @@ processors:
 
 output.kafka:
   enabled: true
-  hosts: ["10.0.100.137:9092"]
+  hosts: ["10.0.100.77:9092"]  # 替换本地IP
   #要提前创建topic
   topic: "looklook-log"
   partition.hash:
