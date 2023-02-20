@@ -16,8 +16,9 @@ services:
     command: "redis-server --requirepass G62m50oigInC30sf  --appendonly yes"
     ports:
       - "6379:6379"
-    privileged: true
     restart: unless-stopped
+    networks:
+      - docker_net
 
   mysql:
     image: mysql:8.0.23
@@ -30,9 +31,16 @@ services:
       MYSQL_ROOT_PASSWORD: PXDN93VRKUm8TeE7
     command:
       # 将mysql8.0默认密码策略 修改为 原先 策略 (mysql8.0对其默认策略做了更改 会导致密码无法匹配)
-      --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --explicit_defaults_for_timestamp=true --lower_case_table_names=1
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1
     ports:
       - "3306:3306"
+    restart: unless-stopped
+    networks:
+      - docker_net
 
   #zookeeper是kafka的依赖 - Zookeeper is the dependencies of Kafka
   zookeeper:
@@ -41,9 +49,11 @@ services:
     environment:
       # 时区上海 - Time zone Shanghai (Change if needed)
       TZ: Asia/Shanghai
-    restart: unless-stopped
     ports:
       - "2181:2181"
+    restart: unless-stopped
+    networks:
+      - docker_net
 
   #消息队列 - Message queue
   kafka:
@@ -56,11 +66,13 @@ services:
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
       - KAFKA_AUTO_CREATE_TOPICS_ENABLE=true
       - TZ=Asia/Shanghai
-    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - zookeeper
+    restart: unless-stopped
+    networks:
+      - docker_net
 
   #asynqmon asynq延迟队列、定时队列的webui - Asynqmon asynq delay queue, timing queue's webUI
   asynqmon:
@@ -71,9 +83,11 @@ services:
     command:
       - '--redis-addr=redis:6379'
       - '--redis-password=G62m50oigInC30sf'
-    restart: unless-stopped
     depends_on:
       - redis
+    restart: unless-stopped
+    networks:
+      - docker_net
 
   #  #搜集kafka业务日志、存储prometheus监控数据 - Kafka for collecting business logs and storing Prometheus monitoring data
   elasticsearch:
@@ -86,10 +100,12 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - ./data/elasticsearch/data:/usr/share/elasticsearch/data
-    restart: unless-stopped
     ports:
       - "9200:9200"
       - "9300:9300"
+    restart: unless-stopped
+    networks:
+      - docker_net
 
   #查看elasticsearch数据 - Kibana to view Elasticsearch data
   kibana:
@@ -99,17 +115,18 @@ services:
       I18N_LOCALE: zh-CN
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200 #设置访问elasticsearch的地址
       TZ: Asia/Shanghai
-    restart: unless-stopped
     ports:
       - "5601:5601"
     depends_on:
       - elasticsearch
+    restart: unless-stopped
+    networks:
+      - docker_net
 
   #jaeger链路追踪 — Jaeger for tracing
   jaeger:
     image: jaegertracing/all-in-one:latest
     container_name: jaeger
-    restart: unless-stopped
     ports:
       - "5775:5775/udp"
       - "6831:6831/udp"
@@ -122,6 +139,9 @@ services:
       - SPAN_STORAGE_TYPE=elasticsearch
       - ES_SERVER_URLS=http://elasticsearch:9200
       - LOG_LEVEL=debug
+    restart: unless-stopped
+    networks:
+      - docker_net
 
   #消费kafka中filebeat收集的数据输出到es - The data output collected by FileBeat in Kafka is output to ES
   go-stash:
@@ -132,12 +152,14 @@ services:
       # 时区上海 - Time zone Shanghai (Change if needed)
       TZ: Asia/Shanghai
     user: root
-    restart: unless-stopped
     volumes:
       - ./deploy/go-stash/etc:/app/etc
     depends_on:
       - elasticsearch
       - kafka
+    restart: unless-stopped
+    networks:
+      - docker_net
 
   #收集业务数据 - Collect business data
   filebeat:
@@ -147,7 +169,6 @@ services:
       # 时区上海 - Time zone Shanghai (Change if needed)
       TZ: Asia/Shanghai
     user: root
-    restart: unless-stopped
     entrypoint: "filebeat -e -strict.perms=false" #解决配置文件权限问题 - Solving the configuration file permissions
     volumes:
       - ./deploy/filebeat/conf/filebeat.yml:/usr/share/filebeat/filebeat.yml
@@ -157,6 +178,9 @@ services:
       - /var/lib/docker/containers:/var/lib/docker/containers
     depends_on:
       - kafka
+    restart: unless-stopped
+    networks:
+      - docker_net
 
   #prometheus监控 — Prometheus for monitoring
   prometheus:
@@ -171,10 +195,12 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
-    restart: unless-stopped
     user: root
     ports:
       - "9090:9090"
+    restart: unless-stopped
+    networks:
+      - docker_net
 
   #查看prometheus监控数据 - Grafana to view Prometheus monitoring data
   grafana:
@@ -185,8 +211,19 @@ services:
     environment:
       # 时区上海 - Time zone Shanghai (Change if needed)
       TZ: Asia/Shanghai
-    restart: unless-stopped
     volumes:
       - ./data/grafana/data:/var/lib/grafana
     ports:
       - "3001:3000"
+    restart: unless-stopped
+    networks:
+      - docker_net
+
+
+
+networks:
+  docker_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

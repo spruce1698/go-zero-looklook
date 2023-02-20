@@ -3,6 +3,8 @@ Host: 0.0.0.0
 Port: 1003
 Mode: dev
 
+# 10.0.100.77 替换本地IP
+
 #监控
 Prometheus:
   Host: 0.0.0.0
@@ -12,7 +14,7 @@ Prometheus:
 #链路追踪
 Telemetry:
   Name: travel-api
-  Endpoint: http://jaeger:14268/api/traces
+  Endpoint: http://10.0.100.77:14268/api/traces
   Sampler: 1.0
   Batcher: jaeger
 
@@ -21,9 +23,9 @@ Log:
   Level: error
 
 DB:
-  DataSource: root:PXDN93VRKUm8TeE7@tcp(mysql:3306)/looklook_travel?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+  DataSource: root:PXDN93VRKUm8TeE7@tcp(10.0.100.77:3306)/looklook_travel?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
 Cache:
-  - Host: redis:6379
+  - Host: 10.0.100.77:6379
     Pass: G62m50oigInC30sf
 
 #rpc

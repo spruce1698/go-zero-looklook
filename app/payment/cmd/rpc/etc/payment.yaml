@@ -2,6 +2,7 @@ Name: payment-rpc
 ListenOn: 0.0.0.0:2002
 Mode: dev
 
+# 10.0.100.77 替换本地IP
 
 #监控
 Prometheus:
@@ -12,7 +13,7 @@ Prometheus:
 #链路追踪
 Telemetry:
   Name: payment-rpc
-  Endpoint: http://jaeger:14268/api/traces
+  Endpoint: http://10.0.100.77:14268/api/traces
   Sampler: 1.0
   Batcher: jaeger
 
@@ -21,19 +22,19 @@ Log:
   Level: error
 
 Redis:
-  Host: redis:6379
+  Host: 10.0.100.77:6379
   Type: node
   Pass: G62m50oigInC30sf
 DB:
-  DataSource: root:PXDN93VRKUm8TeE7@tcp(mysql:3306)/looklook_payment?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+  DataSource: root:PXDN93VRKUm8TeE7@tcp(10.0.100.77:3306)/looklook_payment?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
 Cache:
-  - Host: redis:6379
+  - Host: 10.0.100.77:6379
     Pass: G62m50oigInC30sf
 
 #pay success notify order-mq for kq(kafka pub sub)
 KqPaymentUpdatePayStatusConf:
   Brokers:
-    - 10.0.100.137:9092
+    - 10.0.100.77:9092
   Topic: payment-update-paystatus-topic
 
 

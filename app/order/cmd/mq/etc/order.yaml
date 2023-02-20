@@ -3,6 +3,10 @@ Host: 0.0.0.0
 Port: 3001
 Mode: dev
 
+
+# 10.0.100.77 替换本地IP
+
+
 #监控
 Prometheus:
   Host: 0.0.0.0
@@ -12,7 +16,7 @@ Prometheus:
 #链路追踪
 Telemetry:
   Name: order-mq
-  Endpoint: http://jaeger:14268/api/traces
+  Endpoint: http://10.0.100.77:14268/api/traces
   Sampler: 1.0
   Batcher: jaeger
 
@@ -21,7 +25,7 @@ Log:
   Level: error
 
 Redis:
-  Host: redis:6379
+  Host: 10.0.100.77:6379
   Type: node
   Pass: G62m50oigInC30sf
 
@@ -29,7 +33,7 @@ Redis:
 PaymentUpdateStatusConf:
   Name: PaymentUpdateStatus
   Brokers:
-    - 10.0.100.137:9092
+    - 10.0.100.77:9092
   Group: payment-update-paystatus-group
   Topic: payment-update-paystatus-topic
   Offset: first
