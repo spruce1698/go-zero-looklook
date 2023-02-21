@@ -27,7 +27,7 @@ Log:
 Redis:
   Host: 10.0.100.77:6379
   Type: node
-  Pass: G62m50oigInC30sf
+  Pass: 1cVeQ26GhlUSsRmx
 
 #kq
 PaymentUpdateStatusConf:

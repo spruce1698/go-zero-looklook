@@ -22,12 +22,12 @@ Telemetry:
 Redis:
   Host: 127.0.0.1:6379
   Type: node
-  Pass: G62m50oigInC30sf
+  Pass: 1cVeQ26GhlUSsRmx
 DB:
-  DataSource: root:PXDN93VRKUm8TeE7@tcp(127.0.0.1:3306)/looklook_order?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+  DataSource: root:U4AKRhEH0ZauCp8n@tcp(127.0.0.1:3306)/looklook_order?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
 Cache:
   - Host: 127.0.0.1:6379
-    Pass: G62m50oigInC30sf
+    Pass: 1cVeQ26GhlUSsRmx
 
 #rpc
 TravelRpcConf:

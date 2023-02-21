@@ -16,7 +16,7 @@ host=127.0.0.1
 port=3306
 dbname=looklook_$1
 username=root
-passwd=PXDN93VRKUm8TeE7
+passwd=U4AKRhEH0ZauCp8n
 
 
 echo "开始创建库：$dbname 的表：$2"
